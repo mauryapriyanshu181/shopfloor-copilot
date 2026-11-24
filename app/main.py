@@ -61,6 +61,9 @@ def inspect(query: str = Form(...),
         "config": {
             "llm_model": ctx["model_used"] or "template_fallback",
             "rag_top_k": ctx["rag_top_k"],
+            # the bandit's arms mean different things under different retrievers,
+            # so ratings are only comparable within one method
+            "retriever": rag.method,
             "bandit_state": ctx["bandit_state"],
             "bandit_mode": ctx["bandit_mode"],
             "fallbacks": ctx["fallbacks"],
