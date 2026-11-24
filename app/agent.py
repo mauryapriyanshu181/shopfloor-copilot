@@ -13,7 +13,7 @@ import re
 from . import llm, ocr, vision
 
 MAX_STEPS = 5
-TOP_K = 4   # retrieval eval: semantic search finds ~93% of relevant sections at k=4
+TOP_K = 4   # retrieval eval (300 questions): hybrid search finds ~89% of relevant sections at k=4; k=8 adds ~6%
 
 MOCK_WORK_ORDERS = {
     "WO-1042": {"status": "in_process", "part": "P-series housing", "qty": 50,

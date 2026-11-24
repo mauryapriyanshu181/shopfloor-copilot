@@ -269,7 +269,8 @@ def build_retriever(method, chunks):
     if method == "hybrid_rrf":
         return RRFRetriever([BM25Retriever(chunks), SemanticRetriever(chunks)], name="hybrid_rrf")
     if method == "hybrid_weighted":
-        alpha = float(os.environ.get("HYBRID_ALPHA", "0.5"))
+        # 0.3 keyword / 0.7 semantic won the 300-question retrieval eval (round 4)
+        alpha = float(os.environ.get("HYBRID_ALPHA", "0.3"))
         return WeightedRetriever(BM25Retriever(chunks), SemanticRetriever(chunks),
                                  alpha=alpha, name="hybrid_weighted")
     raise ValueError("unknown retriever '%s', expected one of %s" % (method, ", ".join(METHODS)))

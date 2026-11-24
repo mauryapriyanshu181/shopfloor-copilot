@@ -71,3 +71,16 @@ def reciprocal_rank(retrieved, relevant):
         if cid in relevant:
             return 1.0 / rank
     return 0.0
+
+
+def average_precision_at_k(retrieved, relevant, k):
+    """Precision at each rank (within the top k) where a relevant chunk appears,
+    averaged over the relevant chunks. Unlike MRR it rewards finding *all* the
+    relevant chunks near the top, not just the first; with one relevant chunk the two
+    are the same. Averaged over questions this is MAP@k."""
+    hits, total = 0, 0.0
+    for rank, cid in enumerate(retrieved[:k], start=1):
+        if cid in relevant:
+            hits += 1
+            total += hits / float(rank)
+    return total / float(min(len(relevant), k))

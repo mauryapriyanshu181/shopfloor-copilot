@@ -18,7 +18,8 @@ from collections import defaultdict
 from app.retrievers import (EMBED_MODEL, BM25Retriever, RRFRetriever, SemanticRetriever,
                             TfidfRetriever, WeightedRetriever, load_chunks)
 
-from .retrieval_metrics import (hit_at_k, load_cases, precision_at_k, recall_at_k,
+from .retrieval_metrics import (average_precision_at_k, hit_at_k, load_cases,
+                                precision_at_k, recall_at_k,
                                 reciprocal_rank, resolve_relevant, search_query)
 
 KS = (1, 2, 4, 8)
@@ -65,7 +66,8 @@ def evaluate(method, cases, relevant):
         row = {"id": case["id"], "split": case["split"], "category": case["category"],
                "defect": case.get("defect"), "query": case["query"],
                "relevant": sorted(rel), "retrieved": retrieved,
-               "mrr": reciprocal_rank(retrieved, rel), "ms": ms}
+               "mrr": reciprocal_rank(retrieved, rel),
+               "map@4": average_precision_at_k(retrieved, rel, 4), "ms": ms}
         for k in KS:
             row["p@%d" % k] = precision_at_k(retrieved, rel, k)
             row["r@%d" % k] = recall_at_k(retrieved, rel, k)
@@ -75,7 +77,7 @@ def evaluate(method, cases, relevant):
 
 
 def mean_metrics(rows):
-    keys = [m % k for m in ("r@%d", "p@%d", "hit@%d") for k in KS] + ["mrr", "ms"]
+    keys = [m % k for m in ("r@%d", "p@%d", "hit@%d") for k in KS] + ["mrr", "map@4", "ms"]
     out = {key: sum(r[key] for r in rows) / len(rows) for key in keys} if rows else {}
     out["n"] = len(rows)
     return out
@@ -84,7 +86,7 @@ def mean_metrics(rows):
 # ---------- reporting ----------
 
 def summary_table(results, split):
-    cols = ["R@%d" % k for k in KS] + ["P@%d" % k for k in KS] + ["MRR", "ms/q"]
+    cols = ["R@%d" % k for k in KS] + ["P@%d" % k for k in KS] + ["MRR", "MAP@4", "ms/q"]
     lines = ["| method | " + " | ".join(cols) + " |", "|---" * (len(cols) + 1) + "|"]
     n = None
     for name, rows in results.items():
@@ -92,7 +94,7 @@ def summary_table(results, split):
         m = mean_metrics(picked)
         n = m["n"]
         vals = (["%.2f" % m["r@%d" % k] for k in KS] + ["%.2f" % m["p@%d" % k] for k in KS]
-                + ["%.2f" % m["mrr"], "%.2f" % m["ms"]])
+                + ["%.2f" % m["mrr"], "%.2f" % m["map@4"], "%.2f" % m["ms"]])
         lines.append("| %s | %s |" % (name, " | ".join(vals)))
     return "### %s split (%d cases)\n\n" % (split, n) + "\n".join(lines)
 

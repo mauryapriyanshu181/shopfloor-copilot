@@ -93,6 +93,19 @@ def test_ranking_metrics_on_a_toy_list():
     assert reciprocal_rank(["x"], relevant) == 0.0
 
 
+def test_map_rewards_finding_every_relevant_chunk_near_the_top():
+    from evals.retrieval_metrics import average_precision_at_k as ap
+    relevant = {"b", "d"}
+    # hits at ranks 2 and 4: (1/2 + 2/4) / 2 = 0.5
+    assert ap(["a", "b", "c", "d"], relevant, 4) == 0.5
+    # both at the top: perfect
+    assert ap(["b", "d", "a", "c"], relevant, 4) == 1.0
+    # only one found: (1/1) / 2 = 0.5, while MRR would say 1.0
+    assert ap(["b", "a", "c", "e"], relevant, 4) == 0.5
+    # one relevant chunk: same as reciprocal rank
+    assert ap(["a", "b"], {"b"}, 4) == reciprocal_rank(["a", "b"], {"b"})
+
+
 def test_the_agent_query_includes_the_defect():
     assert search_query({"query": "Can I rework this?", "defect": "surface_scratch"}) \
         == "Can I rework this? surface scratch"
@@ -137,6 +150,17 @@ def _local_model():
         SentenceTransformer(EMBED_MODEL, device="cpu", local_files_only=True)
     except Exception:
         pytest.skip("embedding model not downloaded yet; run the retrieval eval once")
+
+
+def test_the_app_uses_the_hybrid_that_won_the_eval(monkeypatch):
+    _local_model()
+    monkeypatch.delenv("RETRIEVER", raising=False)
+    monkeypatch.delenv("HYBRID_ALPHA", raising=False)
+    from app.rag import RagIndex
+    rag = RagIndex()
+    assert rag.method == "hybrid_weighted" and rag.contextual is True
+    assert rag.retriever.alpha == 0.3          # 0.3 x BM25 + 0.7 x semantic
+    assert rag.retriever.a.name == "bm25" and rag.retriever.b.name == "semantic"
 
 
 def test_semantic_search_finds_a_crack_without_the_word_crack(tmp_path):

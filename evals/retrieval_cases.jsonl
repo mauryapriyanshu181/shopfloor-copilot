@@ -51,3 +51,250 @@
 {"id": "i11", "split": "dev", "category": "identifier", "defect": null, "query": "What happens at 250 parts on CNC-07?", "relevant": ["finishing end mill every 250 parts"]}
 {"id": "i12", "split": "dev", "category": "identifier", "defect": null, "query": "Is a 0.5 mm gap ok?", "relevant": ["A warped cover does not sit flat"]}
 {"id": "i13", "split": "test", "category": "identifier", "defect": null, "query": "What is ext 4999 for?", "relevant": ["Report every injury, however minor"]}
+{"id": "n001", "split": "dev", "category": "keyword", "defect": null, "query": "What is the calibration interval for the height gauge?", "relevant": ["Calipers and micrometers are calibrated every 6 months"]}
+{"id": "n002", "split": "test", "category": "keyword", "defect": null, "query": "How often is the CMM probe checked?", "relevant": ["Calipers and micrometers are calibrated every 6 months"]}
+{"id": "n003", "split": "dev", "category": "keyword", "defect": null, "query": "What is the roughing end mill replacement interval on CNC-07?", "relevant": ["finishing end mill every 250 parts"]}
+{"id": "n004", "split": "dev", "category": "keyword", "defect": null, "query": "How long is the spindle warm-up program?", "relevant": ["Run the 15-minute warm-up program at"]}
+{"id": "n005", "split": "test", "category": "keyword", "defect": null, "query": "What causes a short shot on a moulded cover?", "relevant": ["leaving an unfilled edge on the cover"]}
+{"id": "n006", "split": "dev", "category": "keyword", "defect": null, "query": "When is a sink mark on the outer face acceptable?", "relevant": ["shallow depressions that form over thick sections"]}
+{"id": "n007", "split": "dev", "category": "keyword", "defect": null, "query": "What feeler gauge gap makes a warped cover a reject?", "relevant": ["A warped cover does not sit flat"]}
+{"id": "n008", "split": "test", "category": "keyword", "defect": null, "query": "What does the red tag on a non-conforming part carry?", "relevant": ["locked quarantine cage Q1"]}
+{"id": "n009", "split": "dev", "category": "keyword", "defect": null, "query": "How many housings can go in one tote?", "relevant": ["foam-lined totes"]}
+{"id": "n010", "split": "dev", "category": "keyword", "defect": null, "query": "What tag replaces the red tag when a part is released from quarantine?", "relevant": ["A part leaves quarantine only after"]}
+{"id": "n011", "split": "dev", "category": "keyword", "defect": null, "query": "What edge break is required on machined edges?", "relevant": ["All machined edges must be deburred"]}
+{"id": "n012", "split": "test", "category": "keyword", "defect": null, "query": "What Ra is required on mating faces?", "relevant": ["Sealing faces must be Ra 0.8 um"]}
+{"id": "n013", "split": "dev", "category": "keyword", "defect": null, "query": "How many polishing attempts are allowed on a sealing face?", "relevant": ["600 grit, then 1200 grit", "Rule R2 - Surface scratch"]}
+{"id": "n014", "split": "dev", "category": "keyword", "defect": null, "query": "Who approves an NCR disposition?", "relevant": ["The inspector proposes one of four"]}
+{"id": "n015", "split": "test", "category": "keyword", "defect": null, "query": "What fields does an NCR record?", "relevant": ["NCR-YYYY-NNNN"]}
+{"id": "n016", "split": "dev", "category": "keyword", "defect": null, "query": "What is the deadline for closing an NCR?", "relevant": ["NCRs must close within 30 days"]}
+{"id": "n017", "split": "dev", "category": "keyword", "defect": null, "query": "How soon after raising an NCR must containment start?", "relevant": ["Within one hour of raising an"]}
+{"id": "n018", "split": "test", "category": "keyword", "defect": null, "query": "What hearing protection is needed around IM-02?", "relevant": ["Safety glasses are required everywhere"]}
+{"id": "n019", "split": "dev", "category": "keyword", "defect": null, "query": "What times do the shifts change?", "relevant": ["Shifts change at 06:00"]}
+{"id": "n020", "split": "dev", "category": "keyword", "defect": null, "query": "What extension do I call for an emergency?", "relevant": ["Report every injury, however minor"]}
+{"id": "n021", "split": "dev", "category": "keyword", "defect": null, "query": "Which parts does the visual inspection SOP apply to?", "relevant": ["Applies to in-process visual QA"]}
+{"id": "n022", "split": "test", "category": "keyword", "defect": null, "query": "What must every inspection record include?", "relevant": ["retained 7 years"]}
+{"id": "n023", "split": "dev", "category": "keyword", "defect": null, "query": "What scratch depth requires polishing rework?", "relevant": ["Surface scratches up to 0.4 mm depth"]}
+{"id": "n024", "split": "dev", "category": "keyword", "defect": null, "query": "What is the nominal aspect ratio of the P-series housing?", "relevant": ["Measured aspect outside 1.52 - 1.68"]}
+{"id": "n025", "split": "test", "category": "keyword", "defect": null, "query": "Who is the first point of contact for an escalation?", "relevant": ["Maintenance Lead: ext 4155"]}
+{"id": "n026", "split": "dev", "category": "paraphrase", "defect": null, "query": "Do I have to run the machine for a while before the first part of the day?", "relevant": ["Run the 15-minute warm-up program at"]}
+{"id": "n027", "split": "dev", "category": "paraphrase", "defect": null, "query": "My caliper reads off when I check it against the block this morning, what now?", "relevant": ["At the start of every shift,"]}
+{"id": "n028", "split": "test", "category": "paraphrase", "defect": null, "query": "Where do I send a gauge that needs repairing?", "relevant": ["The metrology lab, ext 4170"]}
+{"id": "n029", "split": "dev", "category": "paraphrase", "defect": null, "query": "Can I keep tweaking the offsets if parts keep coming out of size on the same machine?", "relevant": ["Stop adjusting offsets"]}
+{"id": "n030", "split": "dev", "category": "paraphrase", "defect": null, "query": "The machine started chattering and the load is creeping up, should I worry?", "relevant": ["A worn tool shows rising spindle"]}
+{"id": "n031", "split": "dev", "category": "paraphrase", "defect": null, "query": "Can I trim the extra plastic around the edge of the cover myself?", "relevant": ["thin fin of excess plastic"]}
+{"id": "n032", "split": "test", "category": "paraphrase", "defect": null, "query": "There's a faint line on the cover where the plastic joined, is that a defect?", "relevant": ["A knit line is the faint seam"]}
+{"id": "n033", "split": "dev", "category": "paraphrase", "defect": null, "query": "Can a cover that came out bent be heated and straightened?", "relevant": ["A warped cover does not sit flat"]}
+{"id": "n034", "split": "dev", "category": "paraphrase", "defect": null, "query": "Can material be added back to a part that came out too small?", "relevant": ["Rule R3 - Dimensional deviation"]}
+{"id": "n035", "split": "test", "category": "paraphrase", "defect": null, "query": "Who has to sign before a part gets scrapped?", "relevant": ["Rule R4 - Scrap authority"]}
+{"id": "n036", "split": "dev", "category": "paraphrase", "defect": null, "query": "Is it ok to stop the whole line if I think something is cracked?", "relevant": ["Any operator or inspector may stop"]}
+{"id": "n037", "split": "dev", "category": "paraphrase", "defect": null, "query": "Who is allowed to take my lock off the machine?", "relevant": ["prove zero energy"]}
+{"id": "n038", "split": "test", "category": "paraphrase", "defect": null, "query": "What do I write down for the next shift before I go home?", "relevant": ["Shifts change at 06:00"]}
+{"id": "n039", "split": "dev", "category": "paraphrase", "defect": null, "query": "Can a part come out of the cage once its paperwork is signed?", "relevant": ["A part leaves quarantine only after"]}
+{"id": "n040", "split": "dev", "category": "paraphrase", "defect": null, "query": "I found a part lying on the floor with no paperwork, what do I do?", "relevant": ["without a tag or traveler"]}
+{"id": "n041", "split": "dev", "category": "paraphrase", "defect": null, "query": "Do I need a nonconformance report for a scratch I'm releasing as it is?", "relevant": ["Raise an NCR for every part", "Rule R2 - Surface scratch"]}
+{"id": "n042", "split": "test", "category": "paraphrase", "defect": null, "query": "After I raise a nonconformance report, which other parts should I check?", "relevant": ["Within one hour of raising an"]}
+{"id": "n043", "split": "dev", "category": "paraphrase", "defect": null, "query": "What happens to a work order while a nonconformance report is open on it?", "relevant": ["Raise an NCR for every part"]}
+{"id": "n044", "split": "dev", "category": "paraphrase", "defect": null, "query": "Can a bad part be used as it is, and who has to agree?", "relevant": ["The inspector proposes one of four"]}
+{"id": "n045", "split": "test", "category": "paraphrase", "defect": null, "query": "Who looks at nonconformance reports that are running late?", "relevant": ["NCRs must close within 30 days"]}
+{"id": "n046", "split": "dev", "category": "paraphrase", "defect": null, "query": "How smooth does the gasket face have to be?", "relevant": ["Sealing faces must be Ra 0.8 um", "Bore B, the O-ring bore"]}
+{"id": "n047", "split": "dev", "category": "paraphrase", "defect": null, "query": "Are the regular lines the cutter leaves on the face a defect?", "relevant": ["Machining leaves regular tool marks that"]}
+{"id": "n048", "split": "test", "category": "paraphrase", "defect": null, "query": "What grit do I use to fix a scratch on a sealing face?", "relevant": ["600 grit, then 1200 grit"]}
+{"id": "n049", "split": "dev", "category": "paraphrase", "defect": null, "query": "How deep can a scratch be on a face that doesn't seal?", "relevant": ["Surface scratches up to 0.4 mm depth"]}
+{"id": "n050", "split": "dev", "category": "paraphrase", "defect": null, "query": "When does the measured ratio count as out of tolerance?", "relevant": ["Measured aspect outside 1.52 - 1.68"]}
+{"id": "n051", "split": "dev", "category": "paraphrase", "defect": null, "query": "What happens to a part that passes every check?", "relevant": ["A part passing crack, scratch and dimensional checks"]}
+{"id": "n052", "split": "test", "category": "paraphrase", "defect": null, "query": "Is even a really short crack a problem on a load-bearing housing?", "relevant": ["No crack of any length is acceptable"]}
+{"id": "n053", "split": "dev", "category": "paraphrase", "defect": null, "query": "What are the steps I follow at the inspection bench?", "relevant": ["1. Read the work order ID"]}
+{"id": "n054", "split": "dev", "category": "paraphrase", "defect": null, "query": "Can an inspection log entry be changed afterwards?", "relevant": ["retained 7 years"]}
+{"id": "n055", "split": "test", "category": "paraphrase", "defect": null, "query": "How fast do I need to escalate a part that's the wrong size?", "relevant": ["Crack or safety-related escalation: immediate"]}
+{"id": "n056", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The bit has done a few hundred jobs, is it due for a swap?", "relevant": ["finishing end mill every 250 parts"]}
+{"id": "n057", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The machine banged into the clamp, can I just start it again?", "relevant": ["strikes the vise, fixture or part"]}
+{"id": "n058", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "Parts look dull and the milky stuff in the sump seems watery", "relevant": ["between 6 and 8 percent"]}
+{"id": "n059", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The plastic piece has a dip over the chunky area", "relevant": ["shallow depressions that form over thick sections"]}
+{"id": "n060", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The plastic lid came out with a bit missing at one end", "relevant": ["leaving an unfilled edge on the cover"]}
+{"id": "n061", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The lid rocks when I put it down on the bench", "relevant": ["A warped cover does not sit flat"]}
+{"id": "n062", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "Hairline split next to a screw hole on the plastic lid", "relevant": ["A knit line is the faint seam"]}
+{"id": "n063", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "Is a busted housing ever fixable?", "relevant": ["Rule R1 - Crack", "No crack of any length is acceptable"]}
+{"id": "n064", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The housing came out undersized, can we save it?", "relevant": ["Rule R3 - Dimensional deviation"]}
+{"id": "n065", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "Who gives the final ok to bin a part?", "relevant": ["Rule R4 - Scrap authority"]}
+{"id": "n066", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "Can I hit the big button if something looks dangerous?", "relevant": ["Any operator or inspector may stop"]}
+{"id": "n067", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "What goggles and hand protection do I need?", "relevant": ["Safety glasses are required everywhere"]}
+{"id": "n068", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "I got burned on a hot part, who do I tell?", "relevant": ["Report every injury, however minor"]}
+{"id": "n069", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "Where do the rejects get locked up?", "relevant": ["locked quarantine cage Q1"]}
+{"id": "n070", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "Can the split plastic lids go back in the hopper?", "relevant": ["A knit line is the faint seam"]}
+{"id": "n071", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The date on the measuring tool's label has passed", "relevant": ["since its last good calibration", "Calipers and micrometers are calibrated every 6 months"]}
+{"id": "n072", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "Is my caliper good enough for a five-hundredths band?", "relevant": ["at least ten times finer"]}
+{"id": "n073", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "Production and QA disagree on a reading, who settles it?", "relevant": ["The metrology lab, ext 4170"]}
+{"id": "n074", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The corners of the part are razor sharp", "relevant": ["All machined edges must be deburred"]}
+{"id": "n075", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "How shiny does the seal surface need to be?", "relevant": ["Sealing faces must be Ra 0.8 um"]}
+{"id": "n076", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "Which surfaces on the pump housing actually seal?", "relevant": ["Bore B, the O-ring bore"]}
+{"id": "n077", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "Is a groove from the cutter going round the part a problem?", "relevant": ["Machining leaves regular tool marks that"]}
+{"id": "n078", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "What's the numbering scheme for our defect paperwork?", "relevant": ["NCR-YYYY-NNNN"]}
+{"id": "n079", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The housing is a touch long, can it be fixed?", "relevant": ["Rule R3 - Dimensional deviation", "Measured aspect outside 1.52 - 1.68"]}
+{"id": "n080", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "How long until a defect report has to be wrapped up?", "relevant": ["NCRs must close within 30 days"]}
+{"id": "n081", "split": "dev", "category": "identifier", "defect": null, "query": "What does Rule R2 say?", "relevant": ["Rule R2 - Surface scratch"]}
+{"id": "n082", "split": "test", "category": "identifier", "defect": null, "query": "What does Rule R3 cover?", "relevant": ["Rule R3 - Dimensional deviation"]}
+{"id": "n083", "split": "dev", "category": "identifier", "defect": null, "query": "Who is on ext 4101?", "relevant": ["Maintenance Lead: ext 4155"]}
+{"id": "n084", "split": "dev", "category": "identifier", "defect": null, "query": "What is ext 4120 for?", "relevant": ["Maintenance Lead: ext 4155"]}
+{"id": "n085", "split": "test", "category": "identifier", "defect": null, "query": "What is cage Q1?", "relevant": ["locked quarantine cage Q1"]}
+{"id": "n086", "split": "dev", "category": "identifier", "defect": null, "query": "Which faces is Ra 3.2 for?", "relevant": ["Sealing faces must be Ra 0.8 um"]}
+{"id": "n087", "split": "dev", "category": "identifier", "defect": null, "query": "What happens at 400 parts on the roughing mill?", "relevant": ["finishing end mill every 250 parts"]}
+{"id": "n088", "split": "test", "category": "identifier", "defect": null, "query": "Is 0.3 mm of flash ok?", "relevant": ["thin fin of excess plastic"]}
+{"id": "n089", "split": "dev", "category": "identifier", "defect": null, "query": "What is the 0.4 mm limit about?", "relevant": ["Surface scratches up to 0.4 mm depth"]}
+{"id": "n090", "split": "dev", "category": "identifier", "defect": null, "query": "What does the 0.12 limit mean for a dimensional deviation?", "relevant": ["Measured aspect outside 1.52 - 1.68", "Escalate when: a crack is detected"]}
+{"id": "n091", "split": "dev", "category": "identifier", "defect": null, "query": "What is IM-02?", "relevant": ["Applies to injection-moulded covers produced on"]}
+{"id": "n092", "split": "test", "category": "identifier", "defect": null, "query": "What happens at 10:00 every day?", "relevant": ["The inspector proposes one of four"]}
+{"id": "n093", "split": "dev", "category": "identifier", "defect": null, "query": "What is Face C?", "relevant": ["Bore B, the O-ring bore"]}
+{"id": "n094", "split": "dev", "category": "identifier", "defect": null, "query": "What is the 6 to 8 percent range for?", "relevant": ["between 6 and 8 percent"]}
+{"id": "n095", "split": "test", "category": "identifier", "defect": null, "query": "What is 1200 grit used for?", "relevant": ["600 grit, then 1200 grit"]}
+{"id": "n096", "split": "dev", "category": "multi", "defect": null, "query": "Crack found on a housing; besides scrapping it, what else has to happen?", "relevant": ["Rule R1 - Crack", "every part machined from the same material lot is held"]}
+{"id": "n097", "split": "dev", "category": "multi", "defect": null, "query": "I dropped my micrometer yesterday; what about the parts I measured, and who can recalibrate it?", "relevant": ["since its last good calibration", "The metrology lab, ext 4170"]}
+{"id": "n098", "split": "test", "category": "multi", "defect": null, "query": "Scratch on Face A: does it count as a sealing face and how do I fix it?", "relevant": ["Bore B, the O-ring bore", "600 grit, then 1200 grit"]}
+{"id": "n099", "split": "dev", "category": "multi", "defect": null, "query": "Flash over 0.3 mm on a cover: what happens to the batch and who do I call?", "relevant": ["thin fin of excess plastic", "Maintenance Lead: ext 4155"]}
+{"id": "n100", "split": "dev", "category": "multi", "defect": null, "query": "The machine crashed into the fixture; how do I make it safe before reaching in?", "relevant": ["strikes the vise, fixture or part", "prove zero energy"]}
+{"id": "n101", "split": "dev", "category": "multi", "defect": null, "query": "Parts out of size twice this shift on CNC-07: what's the limit and what do I do with the machine?", "relevant": ["Stop adjusting offsets", "Measured aspect outside 1.52 - 1.68"]}
+{"id": "n102", "split": "test", "category": "multi", "defect": null, "query": "A caged part has a signed rework disposition; who approved it and how does it leave the cage?", "relevant": ["A part leaves quarantine only after", "The inspector proposes one of four"]}
+{"id": "n103", "split": "dev", "category": "multi", "defect": null, "query": "Who signs off scrapping 10 parts, and what are their extensions?", "relevant": ["Rule R4 - Scrap authority", "Maintenance Lead: ext 4155"]}
+{"id": "n104", "split": "dev", "category": "multi", "defect": null, "query": "Sink mark on the sealing lip and flash on the same cover: what do I do?", "relevant": ["shallow depressions that form over thick sections", "thin fin of excess plastic"]}
+{"id": "n105", "split": "test", "category": "multi", "defect": null, "query": "Cracked cover from IM-02: what is the rule and can it be reground?", "relevant": ["A knit line is the faint seam", "Rule R1 - Crack"]}
+{"id": "n106", "split": "dev", "category": "multi", "defect": null, "query": "Scratch on a non-sealing face: do I release it, and do I need an NCR?", "relevant": ["Rule R2 - Surface scratch", "Raise an NCR for every part"]}
+{"id": "n107", "split": "dev", "category": "multi", "defect": null, "query": "What do I check at shift start on the gauges and on the coolant?", "relevant": ["At the start of every shift,", "between 6 and 8 percent"]}
+{"id": "n108", "split": "test", "category": "multi", "defect": null, "query": "First thing in the morning, what has to happen on the machine and on the calipers?", "relevant": ["Run the 15-minute warm-up program at", "At the start of every shift,"]}
+{"id": "n109", "split": "dev", "category": "multi", "defect": null, "query": "Someone got hurt reaching into a powered machine; who do I tell and what should have been done?", "relevant": ["Report every injury, however minor", "prove zero energy"]}
+{"id": "n110", "split": "dev", "category": "multi", "defect": null, "query": "The inspection disagrees with the ERP status for the work order; do I escalate and how fast?", "relevant": ["Escalate when: a crack is detected", "Crack or safety-related escalation: immediate"]}
+{"id": "n111", "split": "dev", "category": "multi", "defect": null, "query": "Three defects in one work order: do I escalate, and which other parts do I check?", "relevant": ["Escalate when: a crack is detected", "Within one hour of raising an"]}
+{"id": "n112", "split": "test", "category": "multi", "defect": null, "query": "Size is inside the band but the sealing face is rough: is the part ok?", "relevant": ["Sealing faces must be Ra 0.8 um", "Measured aspect outside 1.52 - 1.68"]}
+{"id": "n113", "split": "dev", "category": "multi", "defect": null, "query": "Chatter marks on CNC-07: what do they mean and when is the finishing mill due?", "relevant": ["A worn tool shows rising spindle", "finishing end mill every 250 parts"]}
+{"id": "n114", "split": "dev", "category": "multi", "defect": null, "query": "A scrapped batch needs an NCR: what is the number format and what containment is needed?", "relevant": ["NCR-YYYY-NNNN", "Within one hour of raising an"]}
+{"id": "n115", "split": "test", "category": "multi", "defect": null, "query": "What gloves do I wear handling finished housings, and how are they packed?", "relevant": ["Safety glasses are required everywhere", "foam-lined totes"]}
+{"id": "n116", "split": "dev", "category": "distractor", "defect": null, "query": "What is the tolerance on a gauge itself?", "relevant": ["at least ten times finer"]}
+{"id": "n117", "split": "dev", "category": "distractor", "defect": null, "query": "How do I stop scratches when moving housings around?", "relevant": ["foam-lined totes"]}
+{"id": "n118", "split": "test", "category": "distractor", "defect": null, "query": "Can I stop the line for a suspected crack?", "relevant": ["Any operator or inspector may stop", "Crack or safety-related escalation: immediate"]}
+{"id": "n119", "split": "dev", "category": "distractor", "defect": null, "query": "What is the edge break range for deburring?", "relevant": ["All machined edges must be deburred"]}
+{"id": "n120", "split": "dev", "category": "distractor", "defect": null, "query": "Which defects on the cover's sealing lip get rejected?", "relevant": ["shallow depressions that form over thick sections", "thin fin of excess plastic"]}
+{"id": "n121", "split": "dev", "category": "distractor", "defect": null, "query": "Which parts get quarantined after a collision?", "relevant": ["strikes the vise, fixture or part"]}
+{"id": "n122", "split": "test", "category": "distractor", "defect": null, "query": "Where is the first aid kit?", "relevant": ["Report every injury, however minor"]}
+{"id": "n123", "split": "dev", "category": "distractor", "defect": null, "query": "What gets recorded in the tool life log?", "relevant": ["finishing end mill every 250 parts"]}
+{"id": "n124", "split": "dev", "category": "distractor", "defect": null, "query": "What is recorded in the quarantine log?", "relevant": ["A part leaves quarantine only after"]}
+{"id": "n125", "split": "test", "category": "distractor", "defect": null, "query": "Which log holds the gauge zero readings?", "relevant": ["At the start of every shift,"]}
+{"id": "n126", "split": "dev", "category": "distractor", "defect": null, "query": "Does a polished scratch still need an NCR?", "relevant": ["Raise an NCR for every part"]}
+{"id": "n127", "split": "dev", "category": "distractor", "defect": null, "query": "What rule covers a mark crossing the machining lay?", "relevant": ["Machining leaves regular tool marks that"]}
+{"id": "n128", "split": "test", "category": "distractor", "defect": null, "query": "Which step of the SOP checks for linear discontinuities?", "relevant": ["1. Read the work order ID"]}
+{"id": "n129", "split": "dev", "category": "distractor", "defect": null, "query": "Is the inspection lamp used for sink marks on covers too?", "relevant": ["shallow depressions that form over thick sections"]}
+{"id": "n130", "split": "dev", "category": "distractor", "defect": null, "query": "What does the shift supervisor hold the key to?", "relevant": ["locked quarantine cage Q1"]}
+{"id": "n131", "split": "dev", "category": "distractor", "defect": null, "query": "Which manager reviews overdue NCRs?", "relevant": ["NCRs must close within 30 days"]}
+{"id": "n132", "split": "test", "category": "distractor", "defect": null, "query": "Thermal growth on the machine: is it the coolant or tool wear?", "relevant": ["between 6 and 8 percent", "Stop adjusting offsets"]}
+{"id": "n133", "split": "dev", "category": "agent_style", "defect": "crack", "query": "What do I do now?", "relevant": ["Rule R1 - Crack", "No crack of any length is acceptable"]}
+{"id": "n134", "split": "dev", "category": "agent_style", "defect": "no_defect", "query": "Can this go to the next operation?", "relevant": ["A part passing crack, scratch and dimensional checks"]}
+{"id": "n135", "split": "test", "category": "agent_style", "defect": "crack", "query": "Do I need to tell anyone?", "relevant": ["Escalate when: a crack is detected", "Maintenance Lead: ext 4155"]}
+{"id": "n136", "split": "dev", "category": "agent_style", "defect": "surface_scratch", "query": "Can I polish this out?", "relevant": ["600 grit, then 1200 grit", "Rule R2 - Surface scratch"]}
+{"id": "n137", "split": "dev", "category": "agent_style", "defect": "dimensional_deviation", "query": "Is this reworkable?", "relevant": ["Rule R3 - Dimensional deviation", "Measured aspect outside 1.52 - 1.68"]}
+{"id": "n138", "split": "test", "category": "agent_style", "defect": "crack", "query": "Where does this part go?", "relevant": ["No crack of any length is acceptable", "locked quarantine cage Q1"]}
+{"id": "n139", "split": "dev", "category": "agent_style", "defect": "surface_scratch", "query": "Do I fill in a report for this?", "relevant": ["Raise an NCR for every part"]}
+{"id": "n140", "split": "dev", "category": "agent_style", "defect": "crack", "query": "How urgent is this?", "relevant": ["Crack or safety-related escalation: immediate"]}
+{"id": "n141", "split": "dev", "category": "agent_style", "defect": "dimensional_deviation", "query": "How urgent is this one?", "relevant": ["Crack or safety-related escalation: immediate"]}
+{"id": "n142", "split": "test", "category": "agent_style", "defect": "no_defect", "query": "Can I ship it?", "relevant": ["A part passing crack, scratch and dimensional checks"]}
+{"id": "n143", "split": "dev", "category": "agent_style", "defect": "surface_scratch", "query": "Is this within spec?", "relevant": ["Surface scratches up to 0.4 mm depth"]}
+{"id": "n144", "split": "dev", "category": "agent_style", "defect": "dimensional_deviation", "query": "What should I check on the machine?", "relevant": ["Stop adjusting offsets", "A worn tool shows rising spindle"]}
+{"id": "n145", "split": "test", "category": "agent_style", "defect": "crack", "query": "Who signs this off?", "relevant": ["Rule R4 - Scrap authority"]}
+{"id": "n146", "split": "dev", "category": "agent_style", "defect": "surface_scratch", "query": "Is this acceptable on a sealing face?", "relevant": ["Surface scratches up to 0.4 mm depth", "Rule R2 - Surface scratch"]}
+{"id": "n147", "split": "dev", "category": "agent_style", "defect": "no_defect", "query": "What record do I keep for this?", "relevant": ["A part passing crack, scratch and dimensional checks", "retained 7 years"]}
+{"id": "x001", "split": "dev", "category": "keyword", "defect": null, "query": "How often are micrometers calibrated?", "relevant": ["Calipers and micrometers are calibrated every 6 months"]}
+{"id": "x002", "split": "test", "category": "keyword", "defect": null, "query": "What does the sticker on each gauge show?", "relevant": ["Calipers and micrometers are calibrated every 6 months"]}
+{"id": "x003", "split": "dev", "category": "keyword", "defect": null, "query": "How often are drills replaced on CNC-07?", "relevant": ["finishing end mill every 250 parts"]}
+{"id": "x004", "split": "dev", "category": "keyword", "defect": null, "query": "What must be measured after the warm-up program?", "relevant": ["Run the 15-minute warm-up program at"]}
+{"id": "x005", "split": "test", "category": "keyword", "defect": null, "query": "What does flash on the sealing lip say about the mould?", "relevant": ["thin fin of excess plastic"]}
+{"id": "x006", "split": "dev", "category": "keyword", "defect": null, "query": "Can a short-shot cover be reworked?", "relevant": ["leaving an unfilled edge on the cover"]}
+{"id": "x007", "split": "dev", "category": "keyword", "defect": null, "query": "Who holds the key to the quarantine cage?", "relevant": ["locked quarantine cage Q1"]}
+{"id": "x008", "split": "test", "category": "keyword", "defect": null, "query": "What lot number does each tote carry?", "relevant": ["every part machined from the same material lot is held"]}
+{"id": "x009", "split": "dev", "category": "keyword", "defect": null, "query": "Who signs a use-as-is concession?", "relevant": ["The inspector proposes one of four"]}
+{"id": "x010", "split": "dev", "category": "keyword", "defect": null, "query": "What four dispositions can an inspector propose?", "relevant": ["The inspector proposes one of four"]}
+{"id": "x011", "split": "dev", "category": "keyword", "defect": null, "query": "What is the Ra limit for faces that are neither sealing nor mating?", "relevant": ["Sealing faces must be Ra 0.8 um"]}
+{"id": "x012", "split": "test", "category": "keyword", "defect": null, "query": "Can an automated system execute a scrap decision?", "relevant": ["Rule R4 - Scrap authority"]}
+{"id": "x013", "split": "dev", "category": "keyword", "defect": null, "query": "What is the response time for a dimensional escalation?", "relevant": ["Crack or safety-related escalation: immediate"]}
+{"id": "x014", "split": "dev", "category": "keyword", "defect": null, "query": "When does scrap need the Quality Manager as well?", "relevant": ["Rule R4 - Scrap authority", "Maintenance Lead: ext 4155"]}
+{"id": "x015", "split": "test", "category": "keyword", "defect": null, "query": "What does the inspector record on the traveler for a part with no defect?", "relevant": ["A part passing crack, scratch and dimensional checks", "1. Read the work order ID"]}
+{"id": "x016", "split": "dev", "category": "paraphrase", "defect": null, "query": "Do I check the gauges against the block every shift or once a week?", "relevant": ["At the start of every shift,"]}
+{"id": "x017", "split": "dev", "category": "paraphrase", "defect": null, "query": "The machine sat idle for three hours, anything to do before I restart?", "relevant": ["Run the 15-minute warm-up program at"]}
+{"id": "x018", "split": "test", "category": "paraphrase", "defect": null, "query": "Is there any scratch I can let go on a side that doesn't seal?", "relevant": ["Surface scratches up to 0.4 mm depth", "Rule R2 - Surface scratch"]}
+{"id": "x019", "split": "dev", "category": "paraphrase", "defect": null, "query": "If I can feel the seam line on the cover with my nail, is it bad?", "relevant": ["A knit line is the faint seam"]}
+{"id": "x020", "split": "dev", "category": "paraphrase", "defect": null, "query": "The dent in the cover is only visible up close, is that ok?", "relevant": ["shallow depressions that form over thick sections"]}
+{"id": "x021", "split": "dev", "category": "paraphrase", "defect": null, "query": "Who keeps rejected parts locked away until there's a decision?", "relevant": ["locked quarantine cage Q1"]}
+{"id": "x022", "split": "test", "category": "paraphrase", "defect": null, "query": "If one part cracks, do the other parts from the same bar stock get held?", "relevant": ["every part machined from the same material lot is held"]}
+{"id": "x023", "split": "dev", "category": "paraphrase", "defect": null, "query": "How should finished housings be carried between stations?", "relevant": ["foam-lined totes"]}
+{"id": "x024", "split": "dev", "category": "paraphrase", "defect": null, "query": "What does the supervisor coming on shift have to sign?", "relevant": ["Shifts change at 06:00"]}
+{"id": "x025", "split": "test", "category": "paraphrase", "defect": null, "query": "Can someone get in trouble for stopping the line by mistake?", "relevant": ["Any operator or inspector may stop"]}
+{"id": "x026", "split": "dev", "category": "paraphrase", "defect": null, "query": "Do I have to report a small cut on my finger?", "relevant": ["Report every injury, however minor"]}
+{"id": "x027", "split": "dev", "category": "paraphrase", "defect": null, "query": "What has to be done before a nonconformance report can be closed?", "relevant": ["NCRs must close within 30 days"]}
+{"id": "x028", "split": "test", "category": "paraphrase", "defect": null, "query": "What details go on a nonconformance report?", "relevant": ["NCR-YYYY-NNNN"]}
+{"id": "x029", "split": "dev", "category": "paraphrase", "defect": null, "query": "Is a housing that is too big ever scrapped instead of reworked?", "relevant": ["Rule R3 - Dimensional deviation", "Measured aspect outside 1.52 - 1.68"]}
+{"id": "x030", "split": "dev", "category": "paraphrase", "defect": null, "query": "Which face is a mating face rather than a sealing face?", "relevant": ["Bore B, the O-ring bore"]}
+{"id": "x031", "split": "dev", "category": "paraphrase", "defect": null, "query": "What if the face still fails after the second polish?", "relevant": ["600 grit, then 1200 grit"]}
+{"id": "x032", "split": "test", "category": "paraphrase", "defect": null, "query": "Does every inspection have to say who made the call?", "relevant": ["retained 7 years"]}
+{"id": "x033", "split": "dev", "category": "paraphrase", "defect": null, "query": "Which parts does the moulding defect guide cover?", "relevant": ["Applies to injection-moulded covers produced on"]}
+{"id": "x034", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The cutter has started squealing and leaves rough edges where it exits", "relevant": ["A worn tool shows rising spindle"]}
+{"id": "x035", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "The sump fluid is low, can I top it up from the tap?", "relevant": ["between 6 and 8 percent"]}
+{"id": "x036", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The spindle clipped the jaws but looks fine, can I carry on?", "relevant": ["strikes the vise, fixture or part"]}
+{"id": "x037", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The plastic lid has a lip of extra material sticking out at the join", "relevant": ["thin fin of excess plastic"]}
+{"id": "x038", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "The lid's surface has small craters where it's chunkiest", "relevant": ["shallow depressions that form over thick sections"]}
+{"id": "x039", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The lid looks twisted", "relevant": ["A warped cover does not sit flat"]}
+{"id": "x040", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "There's a fine split starting at the screw post on the lid", "relevant": ["A knit line is the faint seam"]}
+{"id": "x041", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "Could our whole batch of metal be bad after one split part?", "relevant": ["every part machined from the same material lot is held"]}
+{"id": "x042", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "A part with no paperwork turned up in a bin", "relevant": ["without a tag or traveler"]}
+{"id": "x043", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "Can the locked-up parts come back out?", "relevant": ["A part leaves quarantine only after"]}
+{"id": "x044", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "What should I wear on my eyes and hands on the floor?", "relevant": ["Safety glasses are required everywhere"]}
+{"id": "x045", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "Before I put my arm inside, how do I make sure it can't start?", "relevant": ["prove zero energy"]}
+{"id": "x046", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "Who do I tell if I twisted my ankle at work?", "relevant": ["Report every injury, however minor"]}
+{"id": "x047", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The face that bolts to the pump got nicked", "relevant": ["Bore B, the O-ring bore", "Surface scratches up to 0.4 mm depth"]}
+{"id": "x048", "split": "test", "category": "vocab_mismatch", "defect": null, "query": "Do I need to take the sharpness off the corners?", "relevant": ["All machined edges must be deburred"]}
+{"id": "x049", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "Is a long thin line on the housing ok if it's shallow?", "relevant": ["Surface scratches up to 0.4 mm depth"]}
+{"id": "x050", "split": "dev", "category": "vocab_mismatch", "defect": null, "query": "The thing we measure with fell off the bench last night", "relevant": ["since its last good calibration"]}
+{"id": "x051", "split": "dev", "category": "identifier", "defect": null, "query": "Are moulded covers covered by SOP-QA-014?", "relevant": ["Applies to injection-moulded covers produced on", "Applies to in-process visual QA"]}
+{"id": "x052", "split": "test", "category": "identifier", "defect": null, "query": "What is Rule R1?", "relevant": ["Rule R1 - Crack"]}
+{"id": "x053", "split": "dev", "category": "identifier", "defect": null, "query": "What is the 25 mm limit for scratches?", "relevant": ["Surface scratches up to 0.4 mm depth"]}
+{"id": "x054", "split": "dev", "category": "identifier", "defect": null, "query": "What is the 1.52 to 1.68 band?", "relevant": ["Measured aspect outside 1.52 - 1.68"]}
+{"id": "x055", "split": "test", "category": "identifier", "defect": null, "query": "What happens at 600 holes?", "relevant": ["finishing end mill every 250 parts"]}
+{"id": "x056", "split": "dev", "category": "identifier", "defect": null, "query": "Which faces is Ra 1.6 for?", "relevant": ["Sealing faces must be Ra 0.8 um"]}
+{"id": "x057", "split": "dev", "category": "identifier", "defect": null, "query": "What is the 0.2 to 0.5 mm range for?", "relevant": ["All machined edges must be deburred"]}
+{"id": "x058", "split": "test", "category": "identifier", "defect": null, "query": "What happens after 30 days on an open NCR?", "relevant": ["NCRs must close within 30 days"]}
+{"id": "x059", "split": "dev", "category": "identifier", "defect": null, "query": "What is Bore B?", "relevant": ["Bore B, the O-ring bore"]}
+{"id": "x060", "split": "dev", "category": "identifier", "defect": null, "query": "What does 0.005 mm have to do with gauges?", "relevant": ["at least ten times finer"]}
+{"id": "x061", "split": "dev", "category": "identifier", "defect": null, "query": "What is the 15-minute program?", "relevant": ["Run the 15-minute warm-up program at"]}
+{"id": "x062", "split": "test", "category": "identifier", "defect": null, "query": "What happens at 06:00, 14:00 and 22:00?", "relevant": ["Shifts change at 06:00"]}
+{"id": "x063", "split": "dev", "category": "multi", "defect": null, "query": "Coolant is weak and parts are drifting in size: what's the link and what do I do?", "relevant": ["between 6 and 8 percent", "Stop adjusting offsets"]}
+{"id": "x064", "split": "dev", "category": "multi", "defect": null, "query": "A dropped gauge was used on a batch: what gets re-inspected, and who decides the disposition?", "relevant": ["since its last good calibration", "The inspector proposes one of four"]}
+{"id": "x065", "split": "test", "category": "multi", "defect": null, "query": "A crack was found: who do I call and how fast?", "relevant": ["Maintenance Lead: ext 4155", "Crack or safety-related escalation: immediate"]}
+{"id": "x066", "split": "dev", "category": "multi", "defect": null, "query": "Scratch on Bore B: is it within tolerance and how is it reworked?", "relevant": ["Surface scratches up to 0.4 mm depth", "600 grit, then 1200 grit"]}
+{"id": "x067", "split": "dev", "category": "multi", "defect": null, "query": "How do I tag a reject, and when can it be released?", "relevant": ["locked quarantine cage Q1", "A part leaves quarantine only after"]}
+{"id": "x068", "split": "test", "category": "multi", "defect": null, "query": "A short shot and a warped cover from the same press: what happens to each?", "relevant": ["leaving an unfilled edge on the cover", "A warped cover does not sit flat"]}
+{"id": "x069", "split": "dev", "category": "multi", "defect": null, "query": "Undersized housing found: is it scrap and who signs it off?", "relevant": ["Rule R3 - Dimensional deviation", "Rule R4 - Scrap authority"]}
+{"id": "x070", "split": "dev", "category": "multi", "defect": null, "query": "After a collision, which parts are quarantined and is a report needed?", "relevant": ["strikes the vise, fixture or part", "Raise an NCR for every part"]}
+{"id": "x071", "split": "dev", "category": "multi", "defect": null, "query": "At handover, what goes in the log and which machines need a warm-up?", "relevant": ["Shifts change at 06:00", "Run the 15-minute warm-up program at"]}
+{"id": "x072", "split": "test", "category": "multi", "defect": null, "query": "Burr on an edge and a scratch on a non-sealing face: what do I do with each?", "relevant": ["All machined edges must be deburred", "Rule R2 - Surface scratch"]}
+{"id": "x073", "split": "dev", "category": "multi", "defect": null, "query": "Tool marks but Ra within limit: can the part go to the next operation?", "relevant": ["Machining leaves regular tool marks that", "A part passing crack, scratch and dimensional checks"]}
+{"id": "x074", "split": "dev", "category": "multi", "defect": null, "query": "A sink mark on a cover's outer face and a knit line: are both acceptable?", "relevant": ["shallow depressions that form over thick sections", "A knit line is the faint seam"]}
+{"id": "x075", "split": "test", "category": "multi", "defect": null, "query": "Which gauge do I need for a 0.05 mm tolerance, and how often is it calibrated?", "relevant": ["at least ten times finer", "Calipers and micrometers are calibrated every 6 months"]}
+{"id": "x076", "split": "dev", "category": "multi", "defect": null, "query": "What eye protection do I need, and what do I do if something gets in my eye?", "relevant": ["Safety glasses are required everywhere", "Report every injury, however minor"]}
+{"id": "x077", "split": "dev", "category": "distractor", "defect": null, "query": "Does the inspection lamp check for cracks?", "relevant": ["1. Read the work order ID"]}
+{"id": "x078", "split": "test", "category": "distractor", "defect": null, "query": "Is a crack on a moulded cover treated differently from a housing crack?", "relevant": ["A knit line is the faint seam"]}
+{"id": "x079", "split": "dev", "category": "distractor", "defect": null, "query": "What does quarantine immediately mean for a cracked part?", "relevant": ["No crack of any length is acceptable", "locked quarantine cage Q1"]}
+{"id": "x080", "split": "dev", "category": "distractor", "defect": null, "query": "Which supervisor signs the handover log?", "relevant": ["Shifts change at 06:00"]}
+{"id": "x081", "split": "dev", "category": "distractor", "defect": null, "query": "Who signs off scrap after a failed polish?", "relevant": ["600 grit, then 1200 grit", "Rule R4 - Scrap authority"]}
+{"id": "x082", "split": "test", "category": "distractor", "defect": null, "query": "What do I measure a warped cover on?", "relevant": ["A warped cover does not sit flat"]}
+{"id": "x083", "split": "dev", "category": "distractor", "defect": null, "query": "Who do I call after a collision?", "relevant": ["strikes the vise, fixture or part"]}
+{"id": "x084", "split": "dev", "category": "distractor", "defect": null, "query": "Does maintenance need to be called for flash?", "relevant": ["thin fin of excess plastic"]}
+{"id": "x085", "split": "test", "category": "distractor", "defect": null, "query": "What does the Quality Manager review every week?", "relevant": ["NCRs must close within 30 days"]}
+{"id": "x086", "split": "dev", "category": "distractor", "defect": null, "query": "Is a scratch from handling judged differently from any other scratch?", "relevant": ["foam-lined totes"]}
+{"id": "x087", "split": "dev", "category": "distractor", "defect": null, "query": "Which parts must be re-inspected after a gauge fails its daily check?", "relevant": ["since its last good calibration"]}
+{"id": "x088", "split": "test", "category": "distractor", "defect": null, "query": "What is checked at the start of each shift on CNC-07?", "relevant": ["between 6 and 8 percent", "Run the 15-minute warm-up program at"]}
+{"id": "x089", "split": "dev", "category": "agent_style", "defect": "crack", "query": "Who do I call?", "relevant": ["Maintenance Lead: ext 4155", "Escalate when: a crack is detected"]}
+{"id": "x090", "split": "dev", "category": "agent_style", "defect": "surface_scratch", "query": "Can I rework it?", "relevant": ["Rule R2 - Surface scratch", "600 grit, then 1200 grit"]}
+{"id": "x091", "split": "dev", "category": "agent_style", "defect": "dimensional_deviation", "query": "Is this scrap?", "relevant": ["Rule R3 - Dimensional deviation", "Measured aspect outside 1.52 - 1.68"]}
+{"id": "x092", "split": "test", "category": "agent_style", "defect": "no_defect", "query": "Where does this go next?", "relevant": ["A part passing crack, scratch and dimensional checks"]}
+{"id": "x093", "split": "dev", "category": "agent_style", "defect": "crack", "query": "Do I need to stop the line?", "relevant": ["Any operator or inspector may stop", "Crack or safety-related escalation: immediate"]}
+{"id": "x094", "split": "dev", "category": "agent_style", "defect": "dimensional_deviation", "query": "Does this need an NCR?", "relevant": ["Raise an NCR for every part"]}
+{"id": "x095", "split": "test", "category": "agent_style", "defect": "crack", "query": "Can the rest of the lot keep running?", "relevant": ["every part machined from the same material lot is held"]}
+{"id": "x096", "split": "dev", "category": "agent_style", "defect": "surface_scratch", "query": "Is it cosmetic?", "relevant": ["Surface scratches up to 0.4 mm depth", "Rule R2 - Surface scratch"]}
+{"id": "x097", "split": "dev", "category": "agent_style", "defect": "dimensional_deviation", "query": "Should maintenance look at the machine?", "relevant": ["Stop adjusting offsets", "Maintenance Lead: ext 4155"]}
+{"id": "x098", "split": "test", "category": "agent_style", "defect": "no_defect", "query": "Is this ok to release?", "relevant": ["A part passing crack, scratch and dimensional checks"]}
+{"id": "x099", "split": "dev", "category": "agent_style", "defect": "crack", "query": "How do I quarantine this?", "relevant": ["locked quarantine cage Q1", "No crack of any length is acceptable"]}
+{"id": "x100", "split": "dev", "category": "agent_style", "defect": "surface_scratch", "query": "Is this a problem on Face A?", "relevant": ["Bore B, the O-ring bore", "Surface scratches up to 0.4 mm depth"]}
