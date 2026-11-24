@@ -52,6 +52,8 @@ def classify(image_bgr):
                 "evidence": "no part region isolated from background"}
 
     x, y, w, h = box
+    # long side over short side; returned as a number so the disposition rules can
+    # tell above-nominal (reworkable) from below-nominal (scrap)
     aspect = max(w, h) / float(min(w, h))
     defects = _linear_defects(gray, box)
     cracks = [d for d in defects if d["contrast"] >= CRACK_CONTRAST]
@@ -60,16 +62,20 @@ def classify(image_bgr):
     if cracks:
         peak = max(d["contrast"] for d in cracks)
         return {"category": "crack", "confidence": round(min(0.95, 0.55 + peak / 150), 2),
-                "evidence": "%d dark linear discontinuity(ies), peak contrast %.0f" % (len(cracks), peak)}
+                "evidence": "%d dark linear discontinuity(ies), peak contrast %.0f" % (len(cracks), peak),
+                "aspect": round(aspect, 3)}
 
     if abs(aspect - NOMINAL_ASPECT) > ASPECT_TOL:
         return {"category": "dimensional_deviation", "confidence": 0.85,
-                "evidence": "aspect %.2f vs nominal %.2f +/- %.2f" % (aspect, NOMINAL_ASPECT, ASPECT_TOL)}
+                "evidence": "aspect %.2f vs nominal %.2f +/- %.2f" % (aspect, NOMINAL_ASPECT, ASPECT_TOL),
+                "aspect": round(aspect, 3)}
 
     if scratches:
         peak = min(d["contrast"] for d in scratches)
         return {"category": "surface_scratch", "confidence": round(min(0.9, 0.5 + abs(peak) / 150), 2),
-                "evidence": "%d bright linear mark(s), peak contrast %.0f" % (len(scratches), peak)}
+                "evidence": "%d bright linear mark(s), peak contrast %.0f" % (len(scratches), peak),
+                "aspect": round(aspect, 3)}
 
     return {"category": "no_defect", "confidence": 0.8,
-            "evidence": "aspect %.2f within tolerance, no linear defects" % aspect}
+            "evidence": "aspect %.2f within tolerance, no linear defects" % aspect,
+            "aspect": round(aspect, 3)}

@@ -1,0 +1,38 @@
+[
+ {
+  "id": "osha-1910-subpart-o",
+  "file": "osha-1910-subpart-o.xml",
+  "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-11-20/title-29.xml?part=1910&subpart=O",
+  "bytes": 323311,
+  "sha256": "c54d9c5b2ad508dfb6be8acdafe2c2f92196eb100fd3fbe3a6d5651c5fe4ed21",
+  "fetched_at": "2026-11-24T13:32:37+00:00",
+  "license": "US government work, public domain (17 U.S.C. 105)"
+ },
+ {
+  "id": "osha-1910-subpart-i",
+  "file": "osha-1910-subpart-i.xml",
+  "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-11-20/title-29.xml?part=1910&subpart=I",
+  "bytes": 257828,
+  "sha256": "3088e7c21ab38cd001cb63608159e78cd2eb5bfad5afab5f96c1772ff4e0ec55",
+  "fetched_at": "2026-11-24T13:32:43+00:00",
+  "license": "US government work, public domain (17 U.S.C. 105)"
+ },
+ {
+  "id": "osha-1910-147",
+  "file": "osha-1910-147.xml",
+  "url": "https://www.ecfr.gov/api/versioner/v1/full/2026-11-20/title-29.xml?part=1910&section=1910.147",
+  "bytes": 34063,
+  "sha256": "cd19626f5224029ba07a7ecdd36caa27fb2e6f0ed9b22e8b39de6a761eb131d9",
+  "fetched_at": "2026-11-24T13:32:47+00:00",
+  "license": "US government work, public domain (17 U.S.C. 105)"
+ },
+ {
+  "id": "faa-ac-43-13-1b",
+  "file": "faa-ac-43-13-1b.pdf",
+  "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_43.13-1B_w-chg1.pdf",
+  "bytes": 21101662,
+  "sha256": "8dc99dd41334381b287ae02d03dc29928d9eacb1035b67aa24c5a0525324ee73",
+  "fetched_at": "2026-11-24T13:32:53+00:00",
+  "license": "US government work, public domain (17 U.S.C. 105)"
+ }
+]
