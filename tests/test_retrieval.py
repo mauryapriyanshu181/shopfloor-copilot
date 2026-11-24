@@ -93,27 +93,6 @@ def test_ranking_metrics_on_a_toy_list():
     assert reciprocal_rank(["x"], relevant) == 0.0
 
 
-def test_bootstrap_interval_brackets_the_mean_and_is_repeatable():
-    from evals.retrieval_metrics import bootstrap_ci
-    values = [1, 1, 0, 1, 0.5, 1, 0, 1, 1, 1]
-    mean, lo, hi = bootstrap_ci(values)
-    assert lo <= mean <= hi
-    assert (mean, lo, hi) == bootstrap_ci(values)            # seeded
-    assert bootstrap_ci([1, 1, 1]) == (1.0, 1.0, 1.0)        # no spread, no interval
-
-
-def test_paired_comparison_counts_wins_and_says_when_it_cannot_tell():
-    from evals.retrieval_metrics import paired_comparison
-    same = paired_comparison([1, 0, 1], [1, 0, 1])
-    assert (same["wins"], same["ties"], same["losses"]) == (0, 3, 0)
-    assert same["low"] == same["high"] == 0.0
-    mixed = paired_comparison([1, 0, 1, 0], [0, 1, 0, 1])
-    assert (mixed["wins"], mixed["losses"]) == (2, 2)
-    assert mixed["low"] < 0 < mixed["high"]                  # can't tell apart
-    clear = paired_comparison([1] * 20, [0] * 20)
-    assert clear["low"] > 0
-
-
 def test_the_agent_query_includes_the_defect():
     assert search_query({"query": "Can I rework this?", "defect": "surface_scratch"}) \
         == "Can I rework this? surface scratch"

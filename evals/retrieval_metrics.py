@@ -71,31 +71,3 @@ def reciprocal_rank(retrieved, relevant):
         if cid in relevant:
             return 1.0 / rank
     return 0.0
-
-
-# ---------- how sure are we? ----------
-# With ~50 queries one query moves recall by ~0.02, so a difference between two
-# methods means little on its own. The bootstrap resamples the queries with
-# replacement many times and reports where the mean lands 95% of the time.
-
-def bootstrap_ci(values, n_boot=2000, seed=0, level=0.95):
-    """(mean, low, high) of the mean of `values` over bootstrap resamples."""
-    import numpy as np
-    v = np.asarray(values, dtype=float)
-    rng = np.random.default_rng(seed)
-    means = v[rng.integers(0, len(v), size=(n_boot, len(v)))].mean(axis=1)
-    tail = (1 - level) / 2 * 100
-    return float(v.mean()), float(np.percentile(means, tail)), float(np.percentile(means, 100 - tail))
-
-
-def paired_comparison(a, b, n_boot=2000, seed=0):
-    """Compare two methods on the same queries: per-query difference a - b.
-
-    Returns the mean difference with its bootstrap interval, plus how many queries
-    a won, tied and lost. If the interval includes 0, the data cannot tell the two
-    methods apart."""
-    diffs = [x - y for x, y in zip(a, b)]
-    mean, low, high = bootstrap_ci(diffs, n_boot, seed)
-    return {"diff": mean, "low": low, "high": high,
-            "wins": sum(d > 0 for d in diffs), "ties": sum(d == 0 for d in diffs),
-            "losses": sum(d < 0 for d in diffs)}

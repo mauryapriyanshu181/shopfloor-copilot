@@ -10,9 +10,9 @@ scraps or escalates anything by itself.
 Everything runs locally on open-source tools: a 3B model through Ollama, OpenCV,
 Tesseract, and a small embedding model. No cloud AI services.
 
-The interesting part is the **retrieval evaluation**: four rounds of experiments that
-took search from keyword matching to semantic search, with confidence intervals and a
-stress test against ~840 chunks of real OSHA and FAA documents. See
+The interesting part is the **retrieval evaluation**: three rounds of experiments that
+took search from keyword matching to semantic search, ending with a stress test against
+~840 chunks of real OSHA and FAA documents. See
 [Retrieval evaluation](#retrieval-evaluation).
 
 ## What changed on 2026-11-24
@@ -24,8 +24,7 @@ stress test against ~840 chunks of real OSHA and FAA documents. See
   to 11 documents (51 sections), written to overlap on purpose ("crack" appears in the
   moulding guide, "scratch" in material handling) so search has to rank, not just match.
 - **Retrieval evaluation.** 53 labelled questions; TF-IDF, BM25, semantic search and
-  two hybrid methods; recall, precision and MRR at several k; 95% confidence intervals
-  and paired comparisons.
+  two hybrid methods; recall, precision and MRR at several k.
 - **Semantic search with contextual headers** is now the default, replacing word
   matching (TF-IDF). It was the clear winner.
 - **Ingestion pipeline for real documents.** OSHA regulations (eCFR XML) and an FAA
@@ -182,9 +181,6 @@ cannot quietly skew the numbers. About 30% of the questions are a held-out test 
   most 0.25, so low precision at larger k is expected.
 - **MRR** (mean reciprocal rank): 1 / the rank of the first relevant section, averaged.
   How high the right section lands.
-- **95% bootstrap intervals** (2,000 resamples of the questions) and **paired
-  comparisons** (per-question differences between two methods). If the interval for
-  a difference includes 0, the two methods cannot be told apart on this data.
 
 **The methods** (`app/retrievers.py`):
 
@@ -195,7 +191,6 @@ cannot quietly skew the numbers. About 30% of the questions are a held-out test 
 | `semantic` | cosine similarity of `bge-small-en-v1.5` embeddings |
 | `hybrid_rrf` | Reciprocal Rank Fusion of BM25 and semantic: `sum of 1 / (60 + rank)` |
 | `hybrid_weighted a` | `a × BM25 + (1 − a) × semantic`, scores min-max normalised, a = 0.3 / 0.5 / 0.7 |
-| `rrf_keyword` | RRF of TF-IDF and BM25 (two keyword methods) |
 
 Run it:
 
@@ -217,7 +212,6 @@ The full tables for every round are in
 |---|---|---|---|---|---|---|---|---|
 | tfidf | 0.50 | 0.68 | 0.73 | 0.80 | 0.60 | 0.24 | 0.70 | 0.3 |
 | bm25 | 0.57 | 0.67 | 0.75 | 0.80 | 0.66 | 0.24 | 0.73 | 0.0 |
-| rrf_keyword | 0.53 | 0.67 | 0.76 | 0.80 | 0.62 | 0.25 | 0.71 | 0.3 |
 | **semantic** | **0.66** | 0.79 | **0.90** | **0.95** | 0.77 | **0.29** | 0.84 | 11.1 |
 | hybrid_rrf | 0.63 | 0.75 | 0.84 | 0.90 | 0.74 | 0.28 | 0.82 | 13.3 |
 | hybrid_rrf_tfidf | 0.58 | 0.76 | 0.84 | 0.91 | 0.70 | 0.28 | 0.80 | 11.0 |
@@ -240,7 +234,6 @@ Recall@4 by question type:
 Conclusions:
 - **Keyword search finds nothing when the worker's words differ from the document's**
   (0.00 on vocabulary mismatch). Semantic search finds 83% of those.
-- Fusing two keyword methods adds almost nothing: they miss the same things.
 - Hybrid did not beat semantic, but the set had no question where keyword search should
   win: semantic already scored 1.00 on every identifier question.
 - No method found the escalation contacts for crack questions at any k.
@@ -284,36 +277,13 @@ Conclusions:
 - Contextual headers help semantic search (0.90 → 0.93) and do nothing for keyword search.
 - **k = 4** is where the recall curve flattens. Not yet checked: whether the model's
   *answers* are better with 4 sections than with 8.
+- **Semantic search beats keyword search**: question by question, BM25 found something
+  semantic missed on 2 questions, and missed something semantic found on 12. The app's
+  default became semantic search with contextual headers.
+- **Semantic vs hybrid is not settled.** They differ on only 4 to 7 of the 53
+  questions, too few to call a winner.
 
-### Round 3: how sure are we?
-
-Same 53 questions, contextual headers, 95% bootstrap intervals:
-
-| method | Recall@4 [95% CI] | MRR [95% CI] |
-|---|---|---|
-| tfidf | 0.77 [0.66, 0.87] | 0.72 [0.62, 0.82] |
-| bm25 | 0.78 [0.67, 0.88] | 0.76 [0.66, 0.86] |
-| **semantic** | **0.93 [0.86, 0.98]** | **0.89 [0.82, 0.95]** |
-| hybrid_rrf | 0.88 [0.80, 0.95] | 0.85 [0.76, 0.92] |
-| hybrid_weighted 0.3 | 0.90 [0.83, 0.96] | 0.89 [0.82, 0.95] |
-
-Every method against semantic, on the same questions (Recall@4):
-
-| method | difference [95% CI] | wins / ties / losses | verdict |
-|---|---|---|---|
-| tfidf | −0.16 [−0.27, −0.06] | 2 / 39 / 12 | worse |
-| bm25 | −0.15 [−0.25, −0.05] | 2 / 39 / 12 | worse |
-| rrf_keyword | −0.14 [−0.25, −0.04] | 2 / 40 / 11 | worse |
-| hybrid_rrf | −0.05 [−0.13, +0.03] | 2 / 46 / 5 | can't tell apart |
-| hybrid_weighted 0.3 | −0.03 [−0.08, +0.01] | 1 / 49 / 3 | can't tell apart |
-
-Conclusions:
-- **Settled: semantic search beats keyword search.** The interval for the difference
-  stays clear of zero. The app's default became semantic search with contextual headers.
-- **Not settled: semantic vs hybrid.** They differ on only 4 to 7 of 53 questions.
-  53 questions give intervals about ±0.06 wide; telling these apart needs more questions.
-
-### Round 4: real documents as distractors
+### Round 3: real documents as distractors
 
 A real rule book is not 51 tidy sections. To test how retrieval holds up, ~840 chunks of
 public-domain US government documents were added next to the plant's sections:
@@ -325,24 +295,22 @@ public-domain US government documents were added next to the plant's sections:
 | OSHA 29 CFR 1910.147 (lockout/tagout) | 22 |
 | FAA AC 43.13-1B, chapters 4–7 (metal repair, inspection, corrosion, hardware) | 452 |
 
-Same 53 questions (all answered by the plant's rule book), Recall@4, paired on the same
-questions:
+Same 53 questions (all answered by the plant's rule book), Recall@4:
 
-| method | plant only | plant + public | change [95% CI] |
+| method | plant only | plant + public | change |
 |---|---|---|---|
-| tfidf | 0.77 | 0.74 | −0.03 [−0.08, +0.03] |
-| bm25 | 0.78 | 0.71 | −0.07 [−0.13, −0.02] |
-| **semantic** | 0.93 | **0.87** | −0.06 [−0.12, −0.01] |
-| hybrid_rrf | 0.88 | 0.82 | −0.06 [−0.14, +0.03] |
-| hybrid_weighted 0.3 | 0.90 | 0.83 | −0.07 [−0.13, −0.02] |
+| tfidf | 0.77 | 0.74 | −0.03 |
+| bm25 | 0.78 | 0.71 | −0.07 |
+| **semantic** | 0.93 | **0.87** | −0.06 |
+| hybrid_rrf | 0.88 | 0.82 | −0.06 |
+| hybrid_weighted 0.3 | 0.90 | 0.83 | −0.07 |
 
 Conclusions:
 - **Every method gets worse with realistic distractors.** About a quarter of the top-4
   slots (22–29%) go to OSHA or FAA text for questions the plant's own rules answer:
   "Who answers ext 4155?" now pulls in OSHA respirator rules.
-- **Semantic is still clearly ahead of keyword search** (0.87 vs 0.71–0.74), and still
-  can't be told apart from the hybrids at k = 4. At k = 8 the hybrids recover more
-  (0.94 vs 0.88).
+- **Semantic is still clearly ahead of keyword search** (0.87 vs 0.71–0.74), and the
+  hybrids still don't beat it at k = 4. At k = 8 the hybrids recover more (0.94 vs 0.88).
 - **Decision: the public corpus is an eval-only distractor set.** The agent answers from
   the plant's rule book only. The public text only cost recall on plant questions, and
   FAA aircraft repair and generic OSHA rules are not the plant's rules.
@@ -392,14 +360,14 @@ real), 8 heading-only fragments and 5 number tables dropped, 13 table-like chunk
 pytest tests/ -q
 ```
 
-41 tests, about 7 seconds, no Ollama needed (agent tests script the model's replies):
+39 tests, about 7 seconds, no Ollama needed (agent tests script the model's replies):
 
 - the four defect types and the stamp reading
 - the agent loop: tool flow, each tool once, the photo tool hidden without a photo,
   invalid replies, the step limit, model unavailable, escalations never executed
 - the API
-- BM25 against hand-computed values, RRF and weighted fusion, the metrics, bootstrap
-  intervals and paired comparisons, that every label matches exactly one section
+- BM25 against hand-computed values, RRF and weighted fusion, the metrics, and that
+  every label matches exactly one section
 - ingestion: designator paths, XML parsing, header/footer removal, de-hyphenation,
   heading detection, chunk packing and the quality checks
 
