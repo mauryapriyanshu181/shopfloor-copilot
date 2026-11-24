@@ -1,0 +1,99 @@
+{
+ "osha-1910-subpart-o": {
+  "chunks": 196,
+  "words": {
+   "total": 37088,
+   "min": 13,
+   "median": 219.0,
+   "max": 284
+  },
+  "table_like": [
+   "osha-1910.215#(d)(6)~3",
+   "osha-1910.215#(d)(6)~4",
+   "osha-1910.215#(d)(6)~5",
+   "osha-1910.215#(d)(6)~6",
+   "osha-1910.215#(d)(6)~7"
+  ],
+  "blocks": 1006,
+  "small_tails_merged": 5
+ },
+ "osha-1910-subpart-i": {
+  "chunks": 169,
+  "words": {
+   "total": 33080,
+   "min": 18,
+   "median": 222,
+   "max": 281
+  },
+  "table_like": [
+   "osha-1910.132#(g)",
+   "osha-1910.133#(a)(5)"
+  ],
+  "blocks": 888,
+  "small_tails_merged": 2
+ },
+ "osha-1910-147": {
+  "chunks": 22,
+  "words": {
+   "total": 4929,
+   "min": 82,
+   "median": 236.5,
+   "max": 291
+  },
+  "table_like": [],
+  "blocks": 143,
+  "small_tails_merged": 2
+ },
+ "faa-ac-43-13-1b": {
+  "chunks": 452,
+  "words": {
+   "total": 70970,
+   "min": 21,
+   "median": 157.0,
+   "max": 292
+  },
+  "table_like": [
+   "faa-ac43.13-1b#4-23~3",
+   "faa-ac43.13-1b#4-78~2",
+   "faa-ac43.13-1b#4-104~2",
+   "faa-ac43.13-1b#7-43~2",
+   "faa-ac43.13-1b#7-143~2",
+   "faa-ac43.13-1b#7-148~8"
+  ],
+  "chapter_pages": {
+   "4": 141,
+   "5": 222,
+   "6": 272,
+   "7": 313
+  },
+  "paragraph_number_gaps": [
+   "7-85 after 7-72",
+   "7-122 after 7-105"
+  ],
+  "blocks": 1322,
+  "small_tails_merged": 6
+ },
+ "_totals": {
+  "chunks": 839,
+  "duplicates_dropped": [],
+  "heading_only_dropped": [
+   "osha-1910.212#(c)",
+   "osha-1910.212#(d)",
+   "osha-1910.212#(e)",
+   "osha-1910.212#(f)",
+   "osha-1910.212#(g)",
+   "osha-1910.212#(h)",
+   "osha-1910.215#(g)",
+   "osha-1910.219#(n)"
+  ],
+  "number_tables_dropped": [
+   "osha-1910.215#(d)(6)~8",
+   "osha-1910.215#(d)(6)~9",
+   "osha-1910.215#(d)(6)~10",
+   "faa-ac43.13-1b#4-57~2",
+   "faa-ac43.13-1b#4-57~3"
+  ],
+  "target_words": 250,
+  "hard_max_words": 380
+ }
+}

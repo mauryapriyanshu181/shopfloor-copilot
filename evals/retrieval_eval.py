@@ -15,12 +15,12 @@ import subprocess
 import time
 from collections import defaultdict
 
-from app.bandit import ACTIONS, STATE_PATH
 from app.retrievers import (EMBED_MODEL, BM25Retriever, RRFRetriever, SemanticRetriever,
                             TfidfRetriever, WeightedRetriever, load_chunks)
 
-from .retrieval_metrics import (hit_at_k, load_cases, precision_at_k, recall_at_k,
-                                reciprocal_rank, resolve_relevant, search_query)
+from .retrieval_metrics import (bootstrap_ci, hit_at_k, load_cases, paired_comparison,
+                                precision_at_k, recall_at_k, reciprocal_rank,
+                                resolve_relevant, search_query)
 
 KS = (1, 2, 4, 8)
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,8 +36,8 @@ LEGEND = """\
 - hybrid_weighted_a: a * BM25 + (1 - a) * semantic, scores min-max normalised"""
 
 
-def build_methods(names):
-    chunks = load_chunks()
+def build_methods(names, contextual=False, include_public=False):
+    chunks = load_chunks(contextual=contextual, include_public=include_public)
     tfidf, bm25 = TfidfRetriever(chunks), BM25Retriever(chunks)
     methods = {"tfidf": tfidf, "bm25": bm25,
                "rrf_keyword": RRFRetriever([tfidf, bm25], name="rrf_keyword")}
@@ -112,39 +112,39 @@ def category_table(results, k=4):
     return "### Recall@%d by question type (all splits)\n\n" % k + "\n".join(lines)
 
 
-def _bandit_learned():
-    """The bandit's current best k per state, from its saved ratings (if any)."""
-    if not os.path.exists(STATE_PATH):
-        return {}
-    with open(STATE_PATH) as fh:
-        stats = json.load(fh)
-    return {state: max(arms, key=lambda a: arms[a]["mean"])
-            for state, arms in stats.items() if any(a["n"] > 0 for a in arms.values())}
+def confidence_table(results, metrics=("r@4", "mrr")):
+    """Each method's score with a 95% bootstrap interval over all cases."""
+    cols = " | ".join("%s [95%% CI]" % m.upper() for m in metrics)
+    lines = ["| method | %s |" % cols, "|---" * (len(metrics) + 1) + "|"]
+    for name, rows in results.items():
+        cells = []
+        for m in metrics:
+            mean, lo, hi = bootstrap_ci([r[m] for r in rows])
+            cells.append("%.2f [%.2f, %.2f]" % (mean, lo, hi))
+        lines.append("| %s | %s |" % (name, " | ".join(cells)))
+    n = len(next(iter(results.values())))
+    return ("### How sure are we? Recall@4 and MRR with 95%% bootstrap intervals "
+            "(all %d cases)\n\n" % n + "\n".join(lines))
 
 
-def bandit_table(results):
-    """For each defect state: the smallest bandit arm (k) at which every relevant
-    chunk is retrieved for every agent-style case in that state."""
-    states = sorted({r["defect"] for rows in results.values() for r in rows if r["defect"]})
-    learned = _bandit_learned()
-    names = list(results)
-    lines = ["| defect state | " + " | ".join(names) + " | bandit learned |",
-             "|---" * (len(names) + 2) + "|"]
-    for state in states:
-        vals = []
-        for name in names:
-            picked = [r for r in results[name] if r["defect"] == state]
-            full = [k for k in ACTIONS if all(r["r@%d" % k] == 1.0 for r in picked)]
-            if full:
-                vals.append("k=%d" % full[0])
-            else:
-                worst = min(r["r@%d" % max(ACTIONS)] for r in picked)
-                vals.append("none (R@%d=%.2f)" % (max(ACTIONS), worst))
-        vals.append("k=%s" % learned[state] if state in learned else "no ratings")
-        lines.append("| %s | %s |" % (state, " | ".join(vals)))
-    return ("### Smallest bandit k with full recall, per defect state\n\n" + "\n".join(lines)
-            + "\n\n'bandit learned' comes from data/bandit_state.json, rated under the "
-              "retriever the app was running at the time.")
+def paired_table(results, baseline, metric="r@4"):
+    """Every method against one baseline on the same queries."""
+    base = [r[metric] for r in results[baseline]]
+    lines = ["| method | diff vs %s [95%% CI] | wins / ties / losses | verdict |" % baseline,
+             "|---|---|---|---|"]
+    for name, rows in results.items():
+        if name == baseline:
+            continue
+        c = paired_comparison([r[metric] for r in rows], base)
+        verdict = ("better" if c["low"] > 0 else "worse" if c["high"] < 0
+                   else "can't tell apart")
+        lines.append("| %s | %+.2f [%+.2f, %+.2f] | %d / %d / %d | %s |"
+                     % (name, c["diff"], c["low"], c["high"], c["wins"], c["ties"],
+                        c["losses"], verdict))
+    return ("### Paired comparison on %s: each method vs %s, same queries\n\n"
+            % (metric.upper(), baseline) + "\n".join(lines)
+            + "\n\n'can't tell apart' means the interval includes 0: more cases are "
+              "needed before calling a winner.")
 
 
 def failures(rows, k=4):
@@ -169,17 +169,22 @@ def _git():
         return {"sha": "unknown", "dirty": None}
 
 
-def save(results, chunks, names):
+def save(results, chunks, names, contextual, corpus="plant"):
     os.makedirs(RESULTS_DIR, exist_ok=True)
     git = _git()
     stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    path = os.path.join(RESULTS_DIR, "retrieval_%s_%s.json" % (stamp, git["sha"]))
+    tag = ("_contextual" if contextual else "") + ("_all" if corpus == "all" else "")
+    path = os.path.join(RESULTS_DIR, "retrieval_%s_%s%s.json" % (stamp, git["sha"], tag))
     payload = {
         "timestamp": stamp, "git": git, "ks": list(KS), "n_chunks": len(chunks),
+        "contextual_chunks": contextual, "corpus": corpus,
         "embed_model": EMBED_MODEL if any(n not in KEYWORD_METHODS for n in names) else None,
         "methods": {
             name: {"summary": {s: mean_metrics([r for r in rows if s == "all" or r["split"] == s])
                                for s in ("dev", "test", "all")},
+                   "ci_95": {m: dict(zip(("mean", "low", "high"),
+                                         bootstrap_ci([r[m] for r in rows])))
+                             for m in ("r@4", "mrr")},
                    "cases": rows}
             for name, rows in results.items()},
     }
@@ -194,22 +199,32 @@ def main():
                     help="comma-separated, from: " + ", ".join(ALL_METHODS))
     ap.add_argument("--failures", metavar="METHOD",
                     help="also list the cases this method misses at k=4")
+    ap.add_argument("--contextual", action="store_true",
+                    help="prefix every section with its document title before indexing")
+    ap.add_argument("--corpus", choices=("plant", "all"), default="plant",
+                    help="plant = the plant's rule book only; all = plus public OSHA/FAA docs")
+    ap.add_argument("--baseline", default="semantic",
+                    help="method the others are compared against (default: semantic)")
     ap.add_argument("--no-save", action="store_true", help="do not write evals/results/")
     args = ap.parse_args()
 
     names = [n.strip() for n in args.methods.split(",") if n.strip()]
-    chunks, methods = build_methods(names)
+    chunks, methods = build_methods(names, contextual=args.contextual,
+                                    include_public=args.corpus == "all")
     cases = load_cases()
     relevant = resolve_relevant(cases, chunks)
 
     results = {name: evaluate(m, cases, relevant) for name, m in methods.items()}
 
-    print("## Retrieval eval: %d cases, %d chunks\n" % (len(cases), len(chunks)))
+    print("## Retrieval eval: %d cases, %d chunks (corpus: %s), contextual headers %s\n"
+          % (len(cases), len(chunks), args.corpus, "on" if args.contextual else "off"))
     print(LEGEND + "\n")
     for split in ("dev", "test"):
         print(summary_table(results, split) + "\n")
     print(category_table(results) + "\n")
-    print(bandit_table(results) + "\n")
+    print(confidence_table(results) + "\n")
+    baseline = args.baseline if args.baseline in results else next(iter(results))
+    print(paired_table(results, baseline) + "\n")
 
     if args.failures:
         if args.failures not in results:
@@ -217,7 +232,8 @@ def main():
         print("### %s misses at k=4\n\n%s\n" % (args.failures, failures(results[args.failures])))
 
     if not args.no_save:
-        print("saved %s" % os.path.relpath(save(results, chunks, names), ROOT))
+        print("saved %s" % os.path.relpath(save(results, chunks, names, args.contextual,
+                                                args.corpus), ROOT))
 
 
 if __name__ == "__main__":

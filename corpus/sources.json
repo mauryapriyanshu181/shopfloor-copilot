@@ -1,0 +1,38 @@
+{
+  "ecfr_date": "2026-11-20",
+  "sources": [
+    {
+      "id": "osha-1910-subpart-o",
+      "title": "29 CFR 1910 Subpart O - Machinery and Machine Guarding",
+      "publisher": "OSHA, via the eCFR",
+      "format": "ecfr_xml",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/{ecfr_date}/title-29.xml?part=1910&subpart=O",
+      "license": "US government work, public domain (17 U.S.C. 105)"
+    },
+    {
+      "id": "osha-1910-subpart-i",
+      "title": "29 CFR 1910 Subpart I - Personal Protective Equipment",
+      "publisher": "OSHA, via the eCFR",
+      "format": "ecfr_xml",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/{ecfr_date}/title-29.xml?part=1910&subpart=I",
+      "license": "US government work, public domain (17 U.S.C. 105)"
+    },
+    {
+      "id": "osha-1910-147",
+      "title": "29 CFR 1910.147 - The control of hazardous energy (lockout/tagout)",
+      "publisher": "OSHA, via the eCFR",
+      "format": "ecfr_xml",
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/{ecfr_date}/title-29.xml?part=1910&section=1910.147",
+      "license": "US government work, public domain (17 U.S.C. 105)"
+    },
+    {
+      "id": "faa-ac-43-13-1b",
+      "title": "FAA AC 43.13-1B - Acceptable Methods, Techniques, and Practices: Aircraft Inspection and Repair",
+      "publisher": "Federal Aviation Administration",
+      "format": "pdf",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_43.13-1B_w-chg1.pdf",
+      "chapters": [4, 5, 6, 7],
+      "license": "US government work, public domain (17 U.S.C. 105)"
+    }
+  ]
+}

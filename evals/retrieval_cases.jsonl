@@ -9,7 +9,7 @@
 {"id": "p01", "split": "dev", "category": "paraphrase", "defect": null, "query": "The part looks bent and doesn't lie flat on the table, is it ok?", "relevant": ["A warped cover does not sit flat"]}
 {"id": "p02", "split": "dev", "category": "paraphrase", "defect": null, "query": "I need to reach inside the machine to clear a chip, what do I do first?", "relevant": ["prove zero energy"]}
 {"id": "p03", "split": "test", "category": "paraphrase", "defect": null, "query": "Somebody dropped the micrometer, can I keep using it?", "relevant": ["since its last good calibration"]}
-{"id": "p04", "split": "dev", "category": "paraphrase", "defect": null, "query": "Where do bad parts go while they wait for a decision?", "relevant": ["locked quarantine cage Q1"]}
+{"id": "p04", "split": "dev", "category": "paraphrase", "defect": null, "query": "Where do bad parts go while they wait for a decision?", "relevant": ["locked quarantine cage Q1", "without a tag or traveler"]}
 {"id": "p05", "split": "dev", "category": "paraphrase", "defect": null, "query": "How long do we keep inspection records?", "relevant": ["retained 7 years"]}
 {"id": "p06", "split": "test", "category": "paraphrase", "defect": null, "query": "What should the incoming supervisor check at shift change?", "relevant": ["Shifts change at 06:00"]}
 {"id": "p07", "split": "dev", "category": "paraphrase", "defect": null, "query": "How much plastic sticking out along the seam can be trimmed at the press?", "relevant": ["thin fin of excess plastic"]}
@@ -45,3 +45,9 @@
 {"id": "a04", "split": "dev", "category": "agent_style", "defect": "dimensional_deviation", "query": "What should I do with this part?", "relevant": ["Measured aspect outside 1.52 - 1.68", "Rule R3 - Dimensional deviation"]}
 {"id": "a05", "split": "dev", "category": "agent_style", "defect": "no_defect", "query": "Is this part good to go?", "relevant": ["A part passing crack, scratch and dimensional checks"]}
 {"id": "a06", "split": "test", "category": "agent_style", "defect": "crack", "query": "Who do I tell about this?", "relevant": ["Shift Supervisor: Anita Rao", "Escalate when: a crack is detected"]}
+{"id": "i08", "split": "dev", "category": "identifier", "defect": null, "query": "Who is on ext 4170?", "relevant": ["The metrology lab, ext 4170"]}
+{"id": "i09", "split": "dev", "category": "identifier", "defect": null, "query": "What does NCR-2026-0042 refer to?", "relevant": ["NCR-YYYY-NNNN"]}
+{"id": "i10", "split": "test", "category": "identifier", "defect": null, "query": "Can flash over 0.3 mm be trimmed?", "relevant": ["thin fin of excess plastic"]}
+{"id": "i11", "split": "dev", "category": "identifier", "defect": null, "query": "What happens at 250 parts on CNC-07?", "relevant": ["finishing end mill every 250 parts"]}
+{"id": "i12", "split": "dev", "category": "identifier", "defect": null, "query": "Is a 0.5 mm gap ok?", "relevant": ["A warped cover does not sit flat"]}
+{"id": "i13", "split": "test", "category": "identifier", "defect": null, "query": "What is ext 4999 for?", "relevant": ["Report every injury, however minor"]}

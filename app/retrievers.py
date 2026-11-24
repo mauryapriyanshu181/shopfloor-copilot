@@ -7,6 +7,7 @@ returns k hits. The hybrid methods combine a keyword and a semantic retriever.
 """
 import glob
 import hashlib
+import json
 import math
 import os
 import re
@@ -16,6 +17,8 @@ import numpy as np
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, TfidfVectorizer
 
 KNOWLEDGE_DIR = os.path.join(os.path.dirname(__file__), "..", "knowledge")
+# public reference documents (OSHA, FAA), built by `python -m ingest.build`
+PUBLIC_CHUNKS = os.path.join(os.path.dirname(__file__), "..", "corpus", "chunks.jsonl")
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
 TOKEN_RE = re.compile(r"(?u)\b\w\w+\b")   # scikit-learn's default token pattern
@@ -39,15 +42,42 @@ def chunk_markdown(text):
     return [c for c in parts if len(c) > 80]
 
 
-def load_chunks(path=KNOWLEDGE_DIR):
+def load_chunks(path=KNOWLEDGE_DIR, contextual=False, include_public=False,
+                public_path=PUBLIC_CHUNKS):
+    """The plant's own rule book (knowledge/*.md, one chunk per '## ' section), plus the
+    public OSHA and FAA chunks when include_public is set. Only the retrieval eval sets
+    it: the public corpus tests retrieval against realistic distractors, the agent
+    never searches it.
+
+    contextual=True puts the document's '# title' line in front of every section,
+    so a section that never names its own topic (a list of phone extensions, say)
+    still carries it. This is the cheap end of 'contextual retrieval': the context is
+    the title, not an LLM-written summary."""
     chunks = []
     for f in sorted(glob.glob(os.path.join(path, "*.md"))):
         source = os.path.basename(f)
         with open(f) as fh:
-            for text in chunk_markdown(fh.read()):
-                heading = text.splitlines()[0].lstrip("# ").strip()
-                chunks.append({"chunk_id": "%s#%s" % (source, heading),
-                               "source": source, "heading": heading, "text": text})
+            raw = fh.read()
+        title = next((l for l in raw.splitlines() if l.startswith("# ")), None)
+        for text in chunk_markdown(raw):
+            heading = text.splitlines()[0].lstrip("# ").strip()
+            if contextual and title:
+                text = title + "\n" + text
+            chunks.append({"chunk_id": "%s#%s" % (source, heading),
+                           "source": source, "heading": heading, "text": text})
+    if include_public:
+        if not os.path.exists(public_path):
+            raise FileNotFoundError("%s not found: run python -m ingest.fetch, then "
+                                    "python -m ingest.build" % public_path)
+        with open(public_path) as fh:
+            for line in fh:
+                c = json.loads(line)
+                text = c["text"]
+                if contextual:
+                    text = "# %s\n%s" % (c["doc_title"], text)
+                chunks.append({"chunk_id": c["chunk_id"], "source": c["source"],
+                               "heading": c["heading"], "text": text,
+                               "citation": c["citation"]})
     return chunks
 
 
@@ -208,8 +238,10 @@ class WeightedRetriever(Retriever):
         return np.ones_like(vals) if hi == lo else (vals - lo) / (hi - lo)
 
     def scores(self, query):
+        # score each retriever once; candidates come from the same arrays, so the
+        # query is never embedded twice
         sa, sb = self.a.scores(query), self.b.scores(query)
-        idx = sorted(set(self.a.ranked(query, self.depth)) | set(self.b.ranked(query, self.depth)))
+        idx = sorted(set(self._order(sa)[:self.depth]) | set(self._order(sb)[:self.depth]))
         fused = np.zeros(len(self.chunks))
         if not idx:
             return fused

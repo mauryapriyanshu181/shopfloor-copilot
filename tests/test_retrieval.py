@@ -93,6 +93,27 @@ def test_ranking_metrics_on_a_toy_list():
     assert reciprocal_rank(["x"], relevant) == 0.0
 
 
+def test_bootstrap_interval_brackets_the_mean_and_is_repeatable():
+    from evals.retrieval_metrics import bootstrap_ci
+    values = [1, 1, 0, 1, 0.5, 1, 0, 1, 1, 1]
+    mean, lo, hi = bootstrap_ci(values)
+    assert lo <= mean <= hi
+    assert (mean, lo, hi) == bootstrap_ci(values)            # seeded
+    assert bootstrap_ci([1, 1, 1]) == (1.0, 1.0, 1.0)        # no spread, no interval
+
+
+def test_paired_comparison_counts_wins_and_says_when_it_cannot_tell():
+    from evals.retrieval_metrics import paired_comparison
+    same = paired_comparison([1, 0, 1], [1, 0, 1])
+    assert (same["wins"], same["ties"], same["losses"]) == (0, 3, 0)
+    assert same["low"] == same["high"] == 0.0
+    mixed = paired_comparison([1, 0, 1, 0], [0, 1, 0, 1])
+    assert (mixed["wins"], mixed["losses"]) == (2, 2)
+    assert mixed["low"] < 0 < mixed["high"]                  # can't tell apart
+    clear = paired_comparison([1] * 20, [0] * 20)
+    assert clear["low"] > 0
+
+
 def test_the_agent_query_includes_the_defect():
     assert search_query({"query": "Can I rework this?", "defect": "surface_scratch"}) \
         == "Can I rework this? surface scratch"
@@ -117,6 +138,15 @@ def test_a_bad_label_is_reported_not_skipped():
         resolve_relevant([{"id": "y", "relevant": ["lubricant"]}], chunks)
 
 
+def test_contextual_chunks_add_the_title_and_keep_the_ids():
+    plain, ctx = load_chunks(), load_chunks(contextual=True)
+    assert [c["chunk_id"] for c in plain] == [c["chunk_id"] for c in ctx]
+    contacts = next(c for c in ctx if c["chunk_id"] == "escalation.md#Contacts")
+    assert contacts["text"].startswith("# Escalation Contacts and Rules\n## Contacts")
+    # labels still resolve, so plain and contextual runs are scored on the same truth
+    resolve_relevant(load_cases(), ctx)
+
+
 # ---------- semantic (only when the model is already downloaded) ----------
 
 def _local_model():
@@ -136,3 +166,4 @@ def test_semantic_search_finds_a_crack_without_the_word_crack(tmp_path):
     sem = SemanticRetriever(load_chunks(), cache_dir=str(tmp_path))
     top = [h["chunk_id"] for h in sem.search("Can a fractured housing still be used?", 4)]
     assert any(cid.endswith("Crack tolerance") or cid.endswith("Rule R1 - Crack") for cid in top)
+
